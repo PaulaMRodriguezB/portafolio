@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paula Rodríguez | Full Stack Developer</title>
+  
+  <!-- Fuente Google Font (Caveat) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  
+  <!-- Devicon CDN para los iconos de tecnologías -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navegación Curva Retráctil -->
+  <header class="contenedor-navegacion" id="navegacion">
+    <svg viewBox="0 0 500 220" class="svg-curva">
+      <path id="ruta-curva" d="M 60,30 A 190,190 0 0,0 440,30" fill="none" stroke="var(--color-menu)" stroke-width="65" stroke-linecap="round" />
+      <text class="texto-menu">
+        <textPath href="#ruta-curva" startOffset="50%" text-anchor="middle">
+          <tspan class="enlace-menu" id="link-herramientas">Tools</tspan>
+          <tspan class="enlace-menu" id="link-proyectos" dx="30">projects</tspan>
+          <tspan class="enlace-menu" id="link-sobre-mi" dx="30">About me</tspan>
+        </textPath>
+      </text>
+    </svg>
+
+    <!-- Botón Toggle con Flecha Doble y "click me" -->
+    <button class="boton-desplegar" id="btn-toggle-nav" aria-label="Desplegar menú">
+      <svg class="icono-flecha-doble" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="7 6 12 11 17 6"></polyline>
+        <polyline points="7 13 12 18 17 13"></polyline>
+      </svg>
+      <span class="texto-click">click me</span>
+    </button>
+  </header>
+
+  <!-- Sección Hero Principal (100vh) -->
+  <main class="contenedor-hero" id="home">
+    <img src="img/heroimg.png" alt="Ilustración Ukiyo-e Paula" class="imagen-fondo">
+
+    <div class="capa-texto">
+      <h1 class="titulo-bienvenida">Welcome to my page</h1>
+      <p class="descripcion-presentacion">
+        This Paula Rodríguez's page<br>
+        full stack developer<br>
+        and this is a little piece of<br>
+        my mind
+      </p>
+    </div>
+  </main>
+
+  <!-- Sección About Me (Landing Page Continuo) -->
+  <section class="seccion-about" id="about">
+    
+    <!-- Ventana Principal About Me -->
+    <div class="ventana-ui ventana-about">
+      <div class="barra-titulo azul">
+        <span class="titulo-ventana">About Me</span>
+        <div class="botones-ventana">
+          <button class="btn-control btn-min"></button>
+          <button class="btn-control btn-max"></button>
+          <button class="btn-control btn-cerrar">&times;</button>
+        </div>
+      </div>
+      
+      <div class="contenido-ventana">
+        <p class="texto-about">
+          I'm a Frontend Developer & UI/UX Designer on a mission to bridge the gap between robust, clean code and beautiful, user-centered digital experiences.
+        </p>
+        <p class="texto-about">
+          My journey started with a deep fascination for how people interact with technology, which naturally led me into the world of daily intensive training in HTML, CSS, JavaScript, and Java full-stack development.
+        </p>
+
+        <div class="acciones-about">
+          <button class="btn-ui btn-outline" id="btn-open-soft-skills">Open Soft Skills</button>
+          <button class="btn-ui btn-solido" id="btn-open-tools">Open Tools</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenedor para Subventanas Flotantes -->
+    <div class="contenedor-subventanas">
+      
+      <!-- Ventana Soft Skills -->
+      <div class="ventana-sub ventana-soft-skills oculta" id="modal-soft-skills">
+        <div class="pestana-sub blanco">Soft Skills</div>
+        <div class="cuerpo-sub">
+          <ul>
+            <li>Autodidact & Continuous Learner</li>
+            <li>Empathy-Driven UX Mindset</li>
+            <li>Agile Collaboration & Adaptability</li>
+            <li>Effective Problem-Solving</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Ventana Tools -->
+      <div class="ventana-sub ventana-tools oculta" id="modal-tools">
+        <div class="pestana-sub azul">Tools</div>
+        <div class="cuerpo-sub grid-tools">
+          <div class="tool-item">
+            <i class="devicon-css3-plain"></i>
+            <span>CSS</span>
+            <div class="estrellas">★★★★★</div>
+          </div>
+          <div class="tool-item">
+            <i class="devicon-html5-plain"></i>
+            <span>HTML</span>
+            <div class="estrellas">★★★★★</div>
+          </div>
+          <div class="tool-item">
+            <i class="devicon-javascript-plain"></i>
+            <span>JS</span>
+            <div class="estrellas">★★★★☆</div>
+          </div>
+          <div class="tool-item">
+            <i class="devicon-bootstrap-plain"></i>
+            <span>Bootstrap</span>
+            <div class="estrellas">★★★★☆</div>
+          </div>
+          <div class="tool-item">
+            <i class="devicon-java-plain"></i>
+            <span>Java</span>
+            <div class="estrellas">★★★★☆</div>
+          </div>
+          <div class="tool-item">
+            <i class="devicon-spring-plain"></i>
+            <span>Spring</span>
+            <div class="estrellas">★★★☆☆</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- Sección Projects -->
+<section class="seccion-projects" id="projects">
+  <div class="ventana-ui ventana-projects">
+    <!-- Barra de título estilo OS Vintage -->
+    <div class="barra-titulo azul">
+      <span class="titulo-ventana">Projects</span>
+      <div class="botones-ventana">
+        <button class="btn-control btn-min"></button>
+        <button class="btn-control btn-max"></button>
+        <button class="btn-control btn-cerrar">&times;</button>
+      </div>
+    </div>
+
+    <!-- Contenido de Proyectos en Grid/Flex -->
+    <div class="contenido-projects">
+      
+     <!-- Seccion Proyectos: Tarjeta de Task Planner -->
+<div class="tarjeta-proyecto" id="card-task-planner">
+  <div class="contenedor-img-proyecto">
+    <!-- IMAGEN 1: Ola ukiyo-e -->
+    <img src="img/taskplaner.jpg" alt="Task planner" class="img-proyecto">
+  </div>
+  <p class="titulo-proyecto">Task planner</p>
+</div>
+
+<!-- Modal Emergente de Task Planner -->
+<div class="overlay-modal" id="modal-task-planner">
+  <div class="ventana-ui ventana-modal-proyecto">
+    <!-- Barra Superior -->
+    <div class="barra-titulo azul">
+      <span class="titulo-ventana">task-planner</span>
+      <div class="botones-ventana">
+        <button class="btn-control btn-min"></button>
+        <button class="btn-control btn-max"></button>
+        <button class="btn-control btn-cerrar" id="btn-cerrar-task-planner">&times;</button>
+      </div>
+    </div>
+
+    <!-- Contenido del Modal -->
+    <div class="contenido-modal-proyecto">
+      <div class="seccion-superior-modal">
+        <!-- IMAGEN 2: Arte japonés con tabla/pomodoro -->
+        <div class="contenedor-img-modal">
+          <img src="img/task1.jpg" alt="Task Planner Detail">
+        </div>
+
+        <!-- Botones de Enlace -->
+        <div class="contenedor-acciones-modal">
+          <a href="https://tu-sitio-web.com" target="_blank" rel="noopener noreferrer" class="btn-click-me">Click me</a>
+          <a href="https://github.com/tu-usuario/task-planner" target="_blank" rel="noopener noreferrer" class="btn-github-modal">
+            <span class="texto-github">GitHub</span>
+            <i class="devicon-github-original"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Descripción Detallada -->
+      <div class="seccion-descripcion-modal">
+        <h3 class="subtitulo-modal">Task Planner App (Interactive Productivity Tool)</h3>
+        <ul class="lista-detalles-modal">
+          <li>Role: Full-Stack / UI-UX Developer</li>
+          <li>Task Management & Categorization: Implemented features for organizing tasks by category and assigning energy-level badges to optimize daily workflow.</li>
+          <li>Pomodoro Integration: Designed and built an embedded Pomodoro timer with start, pause, and reset controls to improve focus cycles.</li>
+          <li>Data Persistence & State: Integrated browser localStorage to sync task updates, timer states, and DOM elements seamlessly without page reloads.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <!-- Tarjeta 2: TuCancha -->
+<div class="tarjeta-proyecto" id="card-tucancha">
+  <div class="contenedor-img-proyecto">
+    <!-- IMAGEN 1: La rana comiendo ramen -->
+    <img src="img/tuCancha.jpg" alt="TuCancha" class="img-proyecto">
+  </div>
+  <p class="titulo-proyecto">TuCancha</p>
+</div>
+
+<!-- Modal Emergente de TuCancha -->
+<div class="overlay-modal" id="modal-tucancha">
+  <div class="ventana-ui ventana-modal-proyecto">
+    <!-- Barra Superior -->
+    <div class="barra-titulo azul">
+      <span class="titulo-ventana">TuCancha</span>
+      <div class="botones-ventana">
+        <button class="btn-control btn-min"></button>
+        <button class="btn-control btn-max"></button>
+        <button class="btn-control btn-cerrar" id="btn-cerrar-tucancha">&times;</button>
+      </div>
+    </div>
+
+    <!-- Contenido del Modal -->
+    <div class="contenido-modal-proyecto">
+      <div class="seccion-superior-modal">
+        <!-- IMAGEN 2: Arte ukiyo-e de fútbol con el Monte Fuji -->
+        <div class="contenedor-img-modal modal-horizontal">
+          <img src="img/cancha1.jfif" alt="TuCancha Detail">
+        </div>
+
+        <!-- Botones de Enlace -->
+        <div class="contenedor-acciones-modal">
+          <a href="https://tu-sitio-web.com" target="_blank" rel="noopener noreferrer" class="btn-click-me">Click me</a>
+          <a href="https://github.com/tu-usuario/tucancha" target="_blank" rel="noopener noreferrer" class="btn-github-modal">
+            <span class="texto-github">GitHub</span>
+            <i class="devicon-github-original"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Descripción Detallada -->
+      <div class="seccion-descripcion-modal">
+        <h3 class="subtitulo-modal">TuCancha - Sports Court Reservation Platform</h3>
+        <p class="descripcion-corta-modal">Full-Stack Web Application for booking and managing sports facilities.</p>
+        
+        <h4 class="subtitulo-seccion-modal">Key Responsibilities & Tech Stack</h4>
+        <ul class="lista-detalles-modal">
+          <li><strong>Frontend / UI-UX:</strong> Figma, HTML5, CSS3, JavaScript, sessionStorage | Designed responsive UI, booking flows, and payment screens.</li>
+          <li><strong>Backend / Database:</strong> Java, Spring Boot, PostgreSQL, REST APIs | Built business logic, reservation endpoints, and database schemas.</li>
+          <li><strong>Management & Tools:</strong> Git, GitHub, Admin Dashboard | Developed administrative panels and managed project repositories.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <!-- Tarjeta 3: Universo a un click -->
+<div class="tarjeta-proyecto" id="card-universo">
+  <div class="contenedor-img-proyecto">
+    <!-- IMAGEN 1: Paisaje Monte Fuji -->
+    <img src="img/Universo.jpg" alt="Universo a un click" class="img-proyecto">
+  </div>
+  <p class="titulo-proyecto">Universo a un click</p>
+</div>
+
+<!-- Modal Emergente de Universo a un click -->
+<div class="overlay-modal" id="modal-universo">
+  <div class="ventana-ui ventana-modal-proyecto">
+    <!-- Barra Superior -->
+    <div class="barra-titulo azul">
+      <span class="titulo-ventana">Universo a un click</span>
+      <div class="botones-ventana">
+        <button class="btn-control btn-min"></button>
+        <button class="btn-control btn-max"></button>
+        <button class="btn-control btn-cerrar" id="btn-cerrar-universo">&times;</button>
+      </div>
+    </div>
+
+    <!-- Contenido del Modal -->
+    <div class="contenido-modal-proyecto">
+      <div class="seccion-superior-modal">
+        <!-- IMAGEN 2: Arte ukiyo-e de la Vía Láctea / Noche estrellada -->
+        <div class="contenedor-img-modal modal-horizontal-doble">
+          <img src="img/imagen2.jfif" alt="Universo a un click Detail">
+        </div>
+
+        <!-- Botones de Enlace -->
+        <div class="contenedor-acciones-modal">
+          <a href="https://tu-sitio-web.com" target="_blank" rel="noopener noreferrer" class="btn-click-me">Click me</a>
+          <a href="https://github.com/tu-usuario/universo-a-un-click" target="_blank" rel="noopener noreferrer" class="btn-github-modal">
+            <span class="texto-github">GitHub</span>
+            <i class="devicon-github-original"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Descripción Detallada -->
+      <div class="seccion-descripcion-modal">
+        <h3 class="subtitulo-modal">NASA APOD Explorer (Collaborative Web App)</h3>
+        <ul class="lista-detalles-modal">
+          <li><strong>Role:</strong> UX/UI Designer</li>
+          <li><strong>UI/UX Design:</strong> Designed intuitive interfaces to display daily NASA images, scientific explanations, and historical date queries.</li>
+          <li><strong>Feature Flows:</strong> Structured layout and user interactions for selecting dates and saving favorites via localStorage.</li>
+          <li><strong>Teamwork:</strong> Collaborated with developers to align UI components with API integration.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+</section>
+
+  <script src="app.js"></script>
+</body>
+</html>

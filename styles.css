@@ -1,0 +1,639 @@
+:root {
+  --color-fondo-rosado: #F9E6CB;
+  --color-fondo-blanco: #ffffff;
+  --color-menu: #f7eea8;
+  --color-texto: #1a1a1a;
+  --color-blanco: #ffffff;
+  --color-azul-ui: #52a5c3;
+  --fuente-manuscrita: 'Caveat', cursive;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Fondo Global Rosa a Blanco en Scroll === */
+html {
+  min-height: 100%;
+  background: linear-gradient(180deg, var(--color-fondo-rosado) 0%, var(--color-fondo-blanco) 100%);
+  background-attachment: fixed;
+}
+
+body {
+  font-family: var(--fuente-manuscrita);
+  color: var(--color-texto);
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: transparent;
+}
+
+/* === Navegación Curva Retráctil === */
+.contenedor-navegacion {
+  position: fixed;
+  top: -210px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 550px;
+  z-index: 9999;
+  transition: top 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.contenedor-navegacion.desplegado {
+  top: -10px;
+}
+
+.svg-curva {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.texto-menu {
+  font-family: var(--fuente-manuscrita);
+  font-size: 26px;
+  font-weight: 600;
+  fill: var(--color-texto);
+}
+
+.enlace-menu {
+  cursor: pointer;
+  transition: fill 0.3s ease;
+}
+
+.enlace-menu:hover {
+  fill: #d96b43;
+}
+
+/* === Botón Toggle (Flecha + "click me") === */
+.boton-desplegar {
+  position: absolute;
+  bottom: -90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0;
+  z-index: 10000;
+}
+
+.icono-flecha-doble {
+  width: 26px;
+  height: 26px;
+  color: var(--color-blanco);
+  filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.7));
+  transition: transform 0.4s ease;
+}
+
+.texto-click {
+  font-family: var(--fuente-manuscrita);
+  font-size: 1.4rem;
+  color: var(--color-blanco);
+  text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.7);
+  user-select: none;
+}
+
+.contenedor-navegacion.desplegado .icono-flecha-doble {
+  transform: rotate(180deg);
+}
+
+/* === Sección Hero Principal === */
+.contenedor-hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagen-fondo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.capa-texto {
+  position: absolute;
+  top: 35%;
+  left: 8%;
+  z-index: 10;
+  max-width: 450px;
+  text-align: center;
+}
+
+.titulo-bienvenida {
+  font-size: 3.5rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+}
+
+.descripcion-presentacion {
+  font-size: 2.6rem;
+  line-height: 1.3;
+}
+
+/* === Sección About Me (Debajo del Hero) === */
+/* === Sección About Me (Ajustada para ser más grande) === */
+.seccion-about {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 100px 20px 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  z-index: 2;
+}
+
+/* Ventana Principal Ampliada */
+.ventana-ui {
+  background: #f8f9fa;
+  border: 3.5px solid var(--color-azul-ui);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 1700px; /* Aumentado de 850px a 1100px */
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.barra-titulo.azul {
+  background-color: var(--color-azul-ui);
+  color: var(--color-blanco);
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.titulo-ventana {
+  font-family: var(--fuente-manuscrita);
+  font-size: 2.3rem; /* Título más grande */
+  font-weight: 600;
+}
+
+.botones-ventana {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-control {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%; /* Botones circulares estilo OS */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+.btn-min { background: #ffbd2e; }
+.btn-max { background: #28c940; }
+.btn-cerrar { background: #ff5f56; color: white; line-height: 12px; font-weight: bold; }
+
+/* Contenido Principal Interno */
+.contenido-ventana {
+  padding: 55px 70px; /* Más espacio interno */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.texto-about {
+  font-size: 2.3rem; /* Texto más visible */
+  line-height: 1.5;
+  color: #2b2b2b;
+}
+
+.acciones-about {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.btn-ui {
+  font-family: var(--fuente-manuscrita);
+  font-size: 1.8rem; /* Botones más amplios */
+  font-weight: 600;
+  padding: 10px 32px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-outline {
+  background: #ffffff;
+  border: 2.5px solid var(--color-azul-ui);
+  color: var(--color-azul-ui);
+}
+
+.btn-solido {
+  background: var(--color-azul-ui);
+  border: 2.5px solid var(--color-azul-ui);
+  color: var(--color-blanco);
+}
+
+.btn-ui:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(82, 165, 195, 0.3);
+}
+
+/* === Subventanas Ampliadas (Soft Skills & Tools) === */
+.contenedor-subventanas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+  max-width: 1100px; /* Coincide con el tamaño de la ventana principal */
+}
+
+.ventana-sub {
+  flex: 1 1 450px; /* Ocupan espacio proporcionado */
+  max-width: 520px;
+  transition: all 0.35s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ventana-sub.oculta {
+  display: none;
+  opacity: 0;
+  transform: translateY(25px);
+}
+
+.pestana-sub {
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 12px 12px 0 0;
+  border: 2.5px solid var(--color-azul-ui);
+  border-bottom: none;
+  font-size: 1.9rem;
+  font-weight: 600;
+  position: relative;
+  top: 2px;
+  z-index: 2;
+}
+
+.pestana-sub.blanco { background: #ffffff; color: var(--color-azul-ui); }
+.pestana-sub.azul { background: var(--color-azul-ui); color: var(--color-blanco); }
+
+.cuerpo-sub {
+  background: #f8f9fa;
+  border: 2.5px solid var(--color-azul-ui);
+  border-radius: 0 16px 16px 16px;
+  padding: 30px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+}
+
+/* Soft Skills Lista Grande */
+.cuerpo-sub ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 2rem;
+}
+
+.cuerpo-sub li {
+  position: relative;
+  padding-left: 28px;
+}
+
+.cuerpo-sub li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: var(--color-azul-ui);
+}
+
+/* Grid Tools Ampliado */
+.grid-tools {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  text-align: center;
+}
+
+.tool-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.6rem;
+}
+
+.tool-item i {
+  font-size: 3rem; /* Iconos sustancialmente más grandes */
+  color: #333;
+}
+
+.estrellas {
+  color: #f7e691;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  .contenido-ventana {
+    padding: 25px 20px;
+  }
+  
+  .texto-about {
+    font-size: 1.8rem;
+  }
+  
+  .acciones-about {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .grid-tools {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tool-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 1.3rem;
+}
+
+.tool-item i {
+  font-size: 2rem;
+}
+
+.estrellas {
+  color: #f7d117;
+  font-size: 1rem;
+}
+
+/* === Adaptabilidad Responsive === */
+@media (max-width: 768px) {
+  .capa-texto {
+    top: 30%;
+    left: 5%;
+    right: 5%;
+    max-width: 100%;
+  }
+
+  .titulo-bienvenida {
+    font-size: 2.5rem;
+  }
+
+  .descripcion-presentacion {
+    font-size: 1.8rem;
+  }
+}
+/* === Sección Projects === */
+.seccion-projects {
+  position: relative;
+  width: 100%;
+  padding: 40px 20px 80px 20px;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* Ventana especifica para proyectos con ancho amplio */
+.ventana-projects {
+  width: 95%;
+  max-width: 1750px;
+}
+
+.contenido-projects {
+  padding: 40px 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+/* Tarjeta individual de cada proyecto */
+.tarjeta-proyecto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.tarjeta-proyecto:hover {
+  transform: translateY(-8px);
+}
+
+/* Marco de la imagen con bordes redondeados */
+.contenedor-img-proyecto {
+  width: 240px;
+  height: 280px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.img-proyecto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Nombre de cada proyecto debajo de la imagen */
+.titulo-proyecto {
+  font-family: var(--fuente-manuscrita);
+  font-size: 2rem;
+  color: var(--color-texto);
+  text-align: center;
+}
+
+/* Ajustes Responsive */
+@media (max-width: 768px) {
+  .contenido-projects {
+    justify-content: center;
+  }
+  
+  .contenedor-img-proyecto {
+    width: 200px;
+    height: 240px;
+  }
+}
+/* Overlay y animaciones para el Modal */
+.overlay-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.overlay-modal.activo {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ventana-modal-proyecto {
+  width: 90%;
+  max-width: 880px;
+  background: #f8f9fa;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.overlay-modal.activo .ventana-modal-proyecto {
+  transform: translateY(0);
+}
+
+.contenido-modal-proyecto {
+  padding: 30px 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Disposición Superior (Imagen 2 + Botones) */
+.seccion-superior-modal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.contenedor-img-modal {
+  width: 320px;
+  height: 320px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  flex-shrink: 0;
+}
+
+.contenedor-img-modal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contenedor-acciones-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  flex-grow: 1;
+}
+
+/* Estilo Botón Click me */
+.btn-click-me {
+  font-family: var(--fuente-manuscrita);
+  font-size: 1.8rem;
+  color: #52a5c3;
+  background: #ffffff;
+  border: 1.5px solid #52a5c3;
+  padding: 6px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-click-me:hover {
+  background: #52a5c3;
+  color: #ffffff;
+}
+
+/* Estilo Botón GitHub */
+.btn-github-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-texto);
+  gap: 2px;
+  transition: transform 0.2s ease;
+}
+
+.btn-github-modal:hover {
+  transform: scale(1.08);
+}
+
+.texto-github {
+  font-family: var(--fuente-manuscrita);
+  font-size: 1.3rem;
+}
+
+.btn-github-modal i {
+  font-size: 2.6rem;
+  color: #333;
+}
+
+/* Estilos de la descripción inferior */
+.subtitulo-modal {
+  font-family: var(--fuente-manuscrita);
+  font-size: 1.9rem;
+  margin-bottom: 8px;
+}
+
+.lista-detalles-modal {
+  list-style-type: disc;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+/* Ajuste de formato horizontal para la imagen de TuCancha */
+.contenedor-img-modal.modal-horizontal {
+  width: 460px;
+  height: 270px;
+}
+
+.descripcion-corta-modal {
+  font-size: 1.4rem;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.subtitulo-seccion-modal {
+  font-family: var(--fuente-manuscrita);
+  font-size: 1.6rem;
+  margin-top: 4px;
+  color: #222;
+}
+/* Ajuste de contenedor amplio para la ilustración doble de la Vía Láctea */
+.contenedor-img-modal.modal-horizontal-doble {
+  width: 480px;
+  height: 270px;
+}
