@@ -23,18 +23,31 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 3. Enlaces del menú curvo
+  // 3. Enlaces del menú curvo
   const enlaceHerramientas = document.getElementById('link-herramientas');
   const enlaceProyectos = document.getElementById('link-proyectos');
   const enlaceSobreMi = document.getElementById('link-sobre-mi');
 
   enlaceHerramientas.addEventListener('click', () => {
-    modalTools.classList.remove('oculta');
-    document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+    // Muestra ambos al tiempo removiendo la clase 'oculta'
+    if (modalTools) modalTools.classList.remove('oculta');
+    if (modalSoftSkills) modalSoftSkills.classList.remove('oculta');
+
+    // Desplaza suavemente hasta la sección principal
+    const seccionAbout = document.getElementById('about');
+    if (seccionAbout) seccionAbout.scrollIntoView({ behavior: 'smooth' });
+
+    // Cierra la barra de navegación curva
     navegacion.classList.remove('desplegado');
   });
 
   enlaceProyectos.addEventListener('click', () => {
-    console.log('Navegar a Proyectos');
+    const seccionProyectos = document.getElementById('projects');
+
+    if (seccionProyectos) {
+      seccionProyectos.scrollIntoView({ behavior: 'smooth' });
+    }
+
     navegacion.classList.remove('desplegado');
   });
 

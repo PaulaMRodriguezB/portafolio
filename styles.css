@@ -1,13 +1,15 @@
 :root {
   --color-fondo-rosado: #F9E6CB;
   --color-fondo-blanco: #ffffff;
-  --color-menu: #f7eea8;
+  --color-menu: #fffbd3;
   --color-texto: #1a1a1a;
   --color-blanco: #ffffff;
   --color-azul-ui: #52a5c3;
-  --fuente-manuscrita: 'Caveat', cursive;
+  --fuente-manuscrita: 'Sniglet', cursive, sans-serif;
 }
-
+* {
+  font-family: 'Sniglet', cursive, sans-serif;
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -33,17 +35,18 @@ body {
 /* === Navegación Curva Retráctil === */
 .contenedor-navegacion {
   position: fixed;
-  top: -210px;
+  top: -300px; /* Sube lo suficiente para ocultar absolutamente toda la curva */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
   max-width: 550px;
   z-index: 9999;
+  overflow: visible; /* Mantiene visible el botón desplegar que sobresale */
   transition: top 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .contenedor-navegacion.desplegado {
-  top: -10px;
+  top: -10px; /* Posición al abrir el menú */
 }
 
 .svg-curva {
@@ -55,7 +58,7 @@ body {
 
 .texto-menu {
   font-family: var(--fuente-manuscrita);
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 600;
   fill: var(--color-texto);
 }
@@ -69,10 +72,14 @@ body {
   fill: #d96b43;
 }
 
-/* === Botón Toggle (Flecha + "click me") === */
+.enlace-cv-svg {
+  text-decoration: none;
+}
+
+/* === Botón Toggle (Se ancla a la parte inferior exacta del SVG) === */
 .boton-desplegar {
   position: absolute;
-  bottom: -90px;
+  top: 300px; /* Alineado exactamente con la posición oculta (-300px) para asomar fuera de la pantalla */
   left: 50%;
   transform: translateX(-50%);
   background: transparent;
@@ -84,6 +91,12 @@ body {
   gap: 2px;
   padding: 0;
   z-index: 10000;
+  transition: top 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Al desplegar el menú, el botón baja junto con la curva */
+.contenedor-navegacion.desplegado .boton-desplegar {
+  top: 210px; 
 }
 
 .icono-flecha-doble {
@@ -97,7 +110,7 @@ body {
 .texto-click {
   font-family: var(--fuente-manuscrita);
   font-size: 1.4rem;
-  color: var(--color-blanco);
+  color: var(--color-texto);
   text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.7);
   user-select: none;
 }
@@ -139,14 +152,19 @@ body {
 }
 
 .titulo-bienvenida {
-  font-size: 3.5rem;
-  font-weight: 500;
-  margin-bottom: 2rem;
+  font-size: 4.5rem;
+  font-weight: 800; 
   line-height: 1.1;
+  text-align: center; 
+  
+  
+  margin-top: -1.5rem; 
+  margin-bottom: 2rem; 
+  padding: 0 1rem; 
 }
 
 .descripcion-presentacion {
-  font-size: 2.6rem;
+  font-size: 1.6rem;
   line-height: 1.3;
 }
 
