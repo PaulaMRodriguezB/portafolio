@@ -133,10 +133,7 @@ body {
   transform: scale(1.1);
 }
 
-.icono-luna {
-  width: 22px;
-  height: 22px;
-}
+
 
 /* === Sección Hero Principal === */
 /* Container principal */
@@ -279,21 +276,40 @@ body {
   font-weight: 700;
   color: #000;
 }
-
-/* Redes Sociales alineadas con los textos */
-.redes-sociales {
+/* Aseguramos que la capa de texto sea el punto de referencia */
+.capa-texto {
+  position: relative;
+  z-index: 2;
   display: flex;
-  align-items: center;
-  gap: 1.2rem;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 500px;
 }
 
-.icono-social {
-  color: #000;
-  width: 22px;
-  height: 22px;
+/* Mantener margen controlado en los botones */
+.contenedor-boton-anotacion {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem; /* Reducido para dar paso a la animación */
+  position: relative;
+}
+
+/* Contenedor Lottie independiente */
+.contenedor-lottie {
+  width: 180px;  /* Ajusta el ancho deseado */
+  height: 180px; /* Ajusta la altura deseada */
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  pointer-events: none; /* Evita bloquear clics alrededor */
+}
+
+.contenedor-lottie dotlottie-player {
+  width: 100%;
+  height: 100%;
 }
 
 /* === Sección About Me (Ajustada para ser más grande) === */
@@ -947,40 +963,44 @@ body {
   opacity: 0.7;
 }
 
-.flecha-link {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--color-azul-ui);
-  transition: transform 0.2s ease;
-}
-/* Contenedor padre alineado en columna (arriba/abajo) */
-.contenedor-boton-anotacion {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* O 'center' si quieres todo centrado */
-  gap: 10px;
+/*footer------------------------------------------------------*/
+.footer-container {
+  position: relative; /* Clave para posicionar la mascota respecto al footer */
+  border-top: 2px solid #000; /* La línea negra del footer */
+  background-color: #f7f4e9;
+  padding: 15px 30px;
 }
 
-/* Fila donde habitan el dragón y el texto anotado */
-.fila-inferior-hero {
+.footer-content {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  margin-top: 5px; /* Separación con respecto al botón superior */
 }
 
-/* Tamaño del dragón */
-.dragon-animation {
-  width: 70px;
-  height: 70px;
-  min-width: 70px;
-  min-height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.footer-pet {
+  position: absolute;
+  /* Aumentamos el tamaño */
+  width: 120px; 
+  height: 120px;
+  
+  /* Ajustamos la posición para compensar el nuevo tamaño */
+  top: -115px; /* Sube la animación para que las patas toquen la línea */
+  right: 60px;  /* Distancia desde el borde derecho */
+  
+  pointer-events: none;
 }
 
-.dragon-animation dotlottie-player {
-  width: 200%;
-  height: 100%;
+/* Forzamos al reproductor a ocupar todo el contenedor */
+.footer-pet dotlottie-player,
+.footer-pet lottie-player {
+  width: 100% !important;
+  height: 100% !important;
+}
+/* Ajuste para que las imágenes tengan la misma dimensión que Devicon */
+.tool-item .icono-tech {
+  width: 2rem;       /* Ajusta el tamaño según la escala de tu Devicon */
+  height: 2rem;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;    /* Asegura que quede centrado si usas flex/grid */
 }

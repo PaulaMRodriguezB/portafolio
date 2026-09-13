@@ -13,6 +13,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
   <!-- Devicon CDN para los iconos de tecnologías -->
+   <link rel="stylesheet" href="https://icons8.com/icon/cerKWiqkPXbg/microsoft-excel-2019">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -42,22 +43,17 @@
     </button>
   </nav>
 </header>
-
-  <!-- Sección Hero Principal (100vh) -->
-  <main class="contenedor-hero" id="home">
-  <!-- Imagen/Ilustración de fondo -->
+<!-- Sección Hero Principal -->
+<main class="contenedor-hero" id="home">
   <img src="img/heroimg.png" alt="Ilustración Hero" class="imagen-fondo">
 
-  <!-- Bloque principal alineado a la izquierda -->
   <div class="capa-texto">
-    
-    <!-- Etiqueta HELLO! -->
     <div class="badge-hello">HELLO!</div>
 
-    <!-- Título y Subtítulo -->
     <h1 class="titulo-bienvenida">
       I'm Paula <span class="carita">:) </span>
     </h1>
+
     <h2 class="subtitulo-profesion">
       Frontend Developer<br>
       & UI/UX Designer
@@ -81,25 +77,24 @@
         </a>
         <span class="destello destello-der"></span>
       </div>
-<div class="fila-inferior-hero">
-    <div class="dragon-animation">
+    </div>
+
+    <!-- Contenedor para la Animación Lottie -->
+    <div class="contenedor-lottie">
       <dotlottie-player 
-        src="./a27SX8ll8R.json" 
+        src="saludo.json" 
         background="transparent" 
         speed="1" 
-        style="width: 70px; height: 70px;" 
         loop 
         autoplay>
       </dotlottie-player>
     </div>
 
-   
   </div>
-
-</div>
-     
-      
 </main>
+
+<!-- Script para cargar el reproductor de Lottie -->
+<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 
   <!-- Sección About Me (Landing Page Continuo) -->
   <section class="seccion-about" id="about">
@@ -153,12 +148,12 @@
           <div class="tool-item">
             <i class="devicon-css3-plain"></i>
             <span>CSS</span>
-            <div class="estrellas">★★★★★</div>
+            <div class="estrellas">★★★☆☆</div>
           </div>
           <div class="tool-item">
             <i class="devicon-html5-plain"></i>
             <span>HTML</span>
-            <div class="estrellas">★★★★★</div>
+            <div class="estrellas">★★★★☆</div>
           </div>
           <div class="tool-item">
             <i class="devicon-javascript-plain"></i>
@@ -180,6 +175,20 @@
             <span>Spring</span>
             <div class="estrellas">★★★☆☆</div>
           </div>
+          <!-- Ícono de Excel -->
+<div class="tool-item">
+  <img src="https://img.icons8.com/?size=100&id=cerKWiqkPXbg&format=png&color=000000" alt="Excel" class="icono-tech">
+  <span>Excel</span>
+  <div class="estrellas">★★★☆☆</div>
+</div>
+
+<!-- Ícono de Power BI -->
+<div class="tool-item">
+  <img src="https://img.icons8.com/?size=100&id=03aYi0fY0D9X&format=png&color=000000" alt="Power BI" class="icono-tech">
+  <span>Power BI</span>
+  <div class="estrellas">★★★☆☆</div>
+</div>
+  
         </div>
       </div>
 
@@ -459,6 +468,24 @@
 
   </div>
 </section>
+<footer class="footer-container">
+  <!-- Mascota posicionada sobre el borde superior -->
+  <div class="footer-pet">
+    <dotlottie-player 
+      src="cat_walking.json" 
+      background="transparent" 
+      speed="1" 
+      loop 
+      autoplay>
+    </dotlottie-player>
+  </div>
+
+  <!-- Contenido del footer -->
+  <div class="footer-content">
+    <p>© 2026 Paula Rodríguez. All rights reserved. Pauuuuu.dev</p>
+   
+  </div>
+</footer>
   <script src="app.js"></script>
 </body>
 </html>
