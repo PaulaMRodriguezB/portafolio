@@ -31,107 +31,128 @@ body {
   overflow-x: hidden;
   background: transparent;
 }
-
-/* === Navegación Curva Retráctil === */
+/* nav */
 .contenedor-navegacion {
   position: fixed;
-  top: -300px; /* Sube lo suficiente para ocultar absolutamente toda la curva */
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
-  max-width: 550px;
+  width: 90%;
+  max-width: 850px;
   z-index: 9999;
-  overflow: visible; /* Mantiene visible el botón desplegar que sobresale */
-  transition: top 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.contenedor-navegacion.desplegado {
-  top: -10px; /* Posición al abrir el menú */
+/* === Barra Flotante Píldora === */
+.navbar-pildora {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1.5rem;
+  background: rgba(184, 223, 248, 0.75); /* Azul claro translúcido */
+  backdrop-filter: blur(12px); /* Efecto difuminado de fondo */
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.12);
 }
 
-.svg-curva {
-  width: 100%;
-  height: auto;
-  display: block;
-  overflow: visible;
+/* === Logo / Marca === */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Sniglet', cursive, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0f172a;
 }
 
-.texto-menu {
-  font-family: var(--fuente-manuscrita);
-  font-size: 24px;
-  font-weight: 600;
-  fill: var(--color-texto);
+.icono-destello {
+  font-size: 1.1rem;
 }
 
-.enlace-menu {
-  cursor: pointer;
-  transition: fill 0.3s ease;
+/* === Lista de Opciones === */
+.nav-lista {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.enlace-menu:hover {
-  fill: #d96b43;
-}
-
-.enlace-cv-svg {
+.nav-item {
+  font-family: 'Sniglet', cursive, sans-serif;
+  font-size: 1.05rem;
+  color: #334155;
   text-decoration: none;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  transition: all 0.25s ease;
+  position: relative;
 }
 
-/* === Botón Toggle (Se ancla a la parte inferior exacta del SVG) === */
-.boton-desplegar {
-  position: absolute;
-  top: 300px; /* Alineado exactamente con la posición oculta (-300px) para asomar fuera de la pantalla */
-  left: 50%;
-  transform: translateX(-50%);
+.nav-item:hover {
+  color: #0f172a;
+}
+
+/* Estado Activo (Píldora azul resaltada como en tu imagen) */
+.nav-item.activo {
+  background-color: #82ceff;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* Botón especial para el CV */
+.btn-cv-pildora {
+  border: 1.5px solid #0f172a;
+  font-weight: 600;
+}
+
+.btn-cv-pildora:hover {
+  background-color: #0f172a;
+  color: #ffffff;
+}
+
+/* === Botón de Luna (Modo Oscuro) === */
+.btn-tema {
   background: transparent;
   border: none;
   cursor: pointer;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 2px;
-  padding: 0;
-  z-index: 10000;
-  transition: top 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  justify-content: center;
+  padding: 6px;
+  border-radius: 50%;
+  color: #0f172a;
+
 }
 
-/* Al desplegar el menú, el botón baja junto con la curva */
-.contenedor-navegacion.desplegado .boton-desplegar {
-  top: 210px; 
+.btn-tema:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
 }
 
-.icono-flecha-doble {
-  width: 26px;
-  height: 26px;
-  color: var(--color-blanco);
-  filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.7));
-  transition: transform 0.4s ease;
-}
-
-.texto-click {
-  font-family: var(--fuente-manuscrita);
-  font-size: 1.4rem;
-  color: var(--color-texto);
-  text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.7);
-  user-select: none;
-}
-
-.contenedor-navegacion.desplegado .icono-flecha-doble {
-  transform: rotate(180deg);
+.icono-luna {
+  width: 22px;
+  height: 22px;
 }
 
 /* === Sección Hero Principal === */
+/* Container principal */
 .contenedor-hero {
   position: relative;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  z-index: 1;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Todo alineado hacia la izquierda */
+  padding-left: 10%; /* Separación del borde izquierdo */
+  overflow: hidden;
+  font-family: 'Sniglet', cursive, sans-serif;
 }
 
+/* Imagen Ilustrativa de Fondo */
 .imagen-fondo {
   position: absolute;
   top: 0;
@@ -142,33 +163,139 @@ body {
   z-index: 1;
 }
 
+/* Bloque contenedor de texto (alineado a la izquierda) */
 .capa-texto {
-  position: absolute;
-  top: 35%;
-  left: 8%;
-  z-index: 10;
-  max-width: 450px;
-  text-align: center;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Mantiene todo alineado a la izquierda */
+  text-align: left;
+  max-width: 500px;
+}
+
+/* HELLO! Badge */
+.badge-hello {
+  border: 2px solid #000;
+  border-radius: 20px;
+  padding: 0.2rem 0.8rem;
+  font-weight: 800;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  background-color: #fff;
 }
 
 .titulo-bienvenida {
-  font-size: 4.5rem;
-  font-weight: 800; 
-  line-height: 1.1;
-  text-align: center; 
-  
-  
-  margin-top: -1.5rem; 
-  margin-bottom: 2rem; 
-  padding: 0 1rem; 
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #000;
+  margin: 0;
+  line-height: 1;
+}
+
+.subtitulo-profesion {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0.5rem 0 1.5rem 0;
+  line-height: 1.2;
 }
 
 .descripcion-presentacion {
-  font-size: 1.6rem;
-  line-height: 1.3;
+  font-size: 1.05rem;
+  color: #222;
+  line-height: 1.4;
+  margin-bottom: 2rem;
 }
 
-/* === Sección About Me (Debajo del Hero) === */
+/* Fila con Botón y Anotación lado a lado */
+.contenedor-boton-anotacion {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+/* Wrapper del Botón */
+.wrapper-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-view-projects {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #0e1726;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 0.8rem 2.2rem;
+  border-radius: 40px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.flecha-btn {
+  width: 20px;
+  height: 20px;
+}
+
+/* Destellos a los lados del botón */
+.destello {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 14px;
+}
+.destello-izq {
+  left: -12px;
+  border-left: 2px solid #000;
+}
+.destello-der {
+  right: -12px;
+  border-right: 2px solid #000;
+}
+
+/* Anotación manuscrita a la derecha del botón */
+.anotacion-cool {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.flecha-curva-svg {
+  width: 35px;
+  height: 25px;
+  color: #000;
+}
+
+.texto-anotacion {
+  font-size: 0.85rem;
+  line-height: 1.1;
+  font-weight: 700;
+  color: #000;
+}
+
+/* Redes Sociales alineadas con los textos */
+.redes-sociales {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.icono-social {
+  color: #000;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* === Sección About Me (Ajustada para ser más grande) === */
 .seccion-about {
   position: relative;
@@ -654,4 +781,206 @@ body {
 .contenedor-img-modal.modal-horizontal-doble {
   width: 480px;
   height: 270px;
+}
+/* === Sección Contacto === */
+.seccion-contacto {
+  position: relative;
+  width: 100%;
+  padding: 60px 20px 80px 20px; /* Incrementamos el padding superior para separarlo */
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  clear: both; /* Evita que elementos flotantes anteriores afecten la posición */
+  font-family: var(--fuente-manuscrita);
+}
+
+/* Ventana estilo Projects */
+.consola-contacto {
+  position: relative; /* Mantiene la ventana dentro del flujo de la sección */
+  width: 95%;
+  max-width: 900px;
+  background-color: var(--color-fondo-blanco);
+  border: 2px solid var(--color-azul-ui);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  margin: 0 auto; /* Centra la ventana perfectamente */
+}
+
+/* Header de la ventana */
+.consola-header {
+  background-color: var(--color-azul-ui);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.consola-header-titulo {
+  color: var(--color-blanco);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+/* Grupo de botones alineados a la derecha */
+.consola-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dot.yellow { background-color: #fca311; }
+.dot.green { background-color: #2ec4b6; }
+.dot.red { 
+  background-color: #ff595e; 
+  color: var(--color-blanco);
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* Cuerpo de la ventana */
+.consola-body {
+  padding: 35px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.titulo-contacto {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--color-texto);
+  text-align: center;
+}
+
+.descripcion-contacto {
+  font-size: 0.95rem;
+  color: var(--color-texto);
+  opacity: 0.8;
+  text-align: center;
+  max-width: 580px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+/* Lista de Contactos */
+.lista-contactos {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Tarjeta individual */
+.item-contacto {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 20px;
+  background-color: var(--color-fondo-blanco);
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item-contacto:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-azul-ui);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.item-contacto:hover .flecha-link {
+  transform: translateX(4px);
+}
+
+/* Iconos */
+.icono-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-blanco);
+  flex-shrink: 0;
+}
+
+.icono-box svg {
+  width: 18px;
+  height: 18px;
+}
+
+.bg-blue { background-color: var(--color-azul-ui); }
+.bg-purple { background-color: #6366f1; }
+.bg-cream { background-color: var(--color-texto); }
+.bg-pink { background-color: #ec4899; }
+
+/* Textos de las redes */
+.info-texto {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.info-texto .label {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-texto);
+}
+
+.info-texto .valor {
+  font-size: 0.82rem;
+  color: var(--color-texto);
+  opacity: 0.7;
+}
+
+.flecha-link {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-azul-ui);
+  transition: transform 0.2s ease;
+}
+/* Contenedor padre alineado en columna (arriba/abajo) */
+.contenedor-boton-anotacion {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* O 'center' si quieres todo centrado */
+  gap: 10px;
+}
+
+/* Fila donde habitan el dragón y el texto anotado */
+.fila-inferior-hero {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 5px; /* Separación con respecto al botón superior */
+}
+
+/* Tamaño del dragón */
+.dragon-animation {
+  width: 70px;
+  height: 70px;
+  min-width: 70px;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dragon-animation dotlottie-player {
+  width: 200%;
+  height: 100%;
 }

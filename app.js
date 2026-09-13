@@ -1,60 +1,57 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Alternar despliegue de la barra de navegación curva
-  const navegacion = document.getElementById('navegacion');
-  const btnToggle = document.getElementById('btn-toggle-nav');
-
-  btnToggle.addEventListener('click', () => {
-    navegacion.classList.toggle('desplegado');
-  });
-
-  // 2. Control de visibilidad para Soft Skills y Tools
-  const btnSoftSkills = document.getElementById('btn-open-soft-skills');
-  const btnTools = document.getElementById('btn-open-tools');
-
-  const modalSoftSkills = document.getElementById('modal-soft-skills');
-  const modalTools = document.getElementById('modal-tools');
-
-  btnSoftSkills.addEventListener('click', () => {
-    modalSoftSkills.classList.toggle('oculta');
-  });
-
-  btnTools.addEventListener('click', () => {
-    modalTools.classList.toggle('oculta');
-  });
-
-  // 3. Enlaces del menú curvo
-  // 3. Enlaces del menú curvo
+  const enlaceSobreMi = document.getElementById('link-sobre-mi');
   const enlaceHerramientas = document.getElementById('link-herramientas');
   const enlaceProyectos = document.getElementById('link-proyectos');
-  const enlaceSobreMi = document.getElementById('link-sobre-mi');
+  const enlaceContacto = document.getElementById('link-contacto');
+  
+  const modalTools = document.getElementById('modal-tools');
+  const modalSoftSkills = document.getElementById('modal-soft-skills');
 
-  enlaceHerramientas.addEventListener('click', () => {
-    // Muestra ambos al tiempo removiendo la clase 'oculta'
-    if (modalTools) modalTools.classList.remove('oculta');
-    if (modalSoftSkills) modalSoftSkills.classList.remove('oculta');
+  // Función para activar el botón seleccionado
+  const marcarActivo = (elemento) => {
+    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('activo'));
+    if (elemento) elemento.classList.add('activo');
+  };
 
-    // Desplaza suavemente hasta la sección principal
-    const seccionAbout = document.getElementById('about');
-    if (seccionAbout) seccionAbout.scrollIntoView({ behavior: 'smooth' });
+  // 1. Click en About Me
+  if (enlaceSobreMi) {
+    enlaceSobreMi.addEventListener('click', (e) => {
+      marcarActivo(enlaceSobreMi);
+      const about = document.getElementById('about');
+      if (about) about.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
 
-    // Cierra la barra de navegación curva
-    navegacion.classList.remove('desplegado');
-  });
+  // 2. Click en Skills / Tools (Abre Softskills + Tools y desplaza)
+  if (enlaceHerramientas) {
+    enlaceHerramientas.addEventListener('click', (e) => {
+      marcarActivo(enlaceHerramientas);
+      if (modalTools) modalTools.classList.remove('oculta');
+      if (modalSoftSkills) modalSoftSkills.classList.remove('oculta');
 
-  enlaceProyectos.addEventListener('click', () => {
-    const seccionProyectos = document.getElementById('projects');
+      const about = document.getElementById('about');
+      if (about) about.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
 
-    if (seccionProyectos) {
-      seccionProyectos.scrollIntoView({ behavior: 'smooth' });
-    }
+  // 3. Click en Projects
+  if (enlaceProyectos) {
+    enlaceProyectos.addEventListener('click', (e) => {
+      marcarActivo(enlaceProyectos);
+      const proyectos = document.getElementById('projects');
+      if (proyectos) proyectos.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
 
-    navegacion.classList.remove('desplegado');
-  });
-
-  enlaceSobreMi.addEventListener('click', () => {
-    document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
-    navegacion.classList.remove('desplegado');
-  });
+  // 4. Click en Contact
+  if (enlaceContacto) {
+    enlaceContacto.addEventListener('click', (e) => {
+      marcarActivo(enlaceContacto);
+      // Reemplaza 'contacto' por el id real de tu sección de contacto
+      const contacto = document.getElementById('contacto') || document.getElementById('contact');
+      if (contacto) contacto.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
 });
 document.addEventListener('DOMContentLoaded', () => {
   const cardTaskPlanner = document.getElementById('card-task-planner');
