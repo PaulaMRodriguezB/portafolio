@@ -1,4 +1,5 @@
 :root {
+  --color-azul-cielo: #D2EBF7; /* Azul cielo suave estilo neobrutalista */
   --color-fondo-rosado: #F9E6CB;
   --color-fondo-blanco: #ffffff;
   --color-menu: #fffbd3;
@@ -7,19 +8,23 @@
   --color-azul-ui: #52a5c3;
   --fuente-manuscrita: 'Sniglet', cursive, sans-serif;
 }
+
 * {
   font-family: 'Sniglet', cursive, sans-serif;
-}
-* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* === Fondo Global Rosa a Blanco en Scroll === */
+/* === Fondo Global: Azul Cielo -> Rosado -> Blanco === */
 html {
   min-height: 100%;
-  background: linear-gradient(180deg, var(--color-fondo-rosado) 0%, var(--color-fondo-blanco) 100%);
+  background: linear-gradient(
+    180deg, 
+    var(--color-azul-cielo) 10%, 
+    var(--color-fondo-rosado) 25%, 
+    var(--color-fondo-blanco) 100%
+  );
   background-attachment: fixed;
 }
 
@@ -31,7 +36,9 @@ body {
   overflow-x: hidden;
   background: transparent;
 }
-/* nav */
+/* ==========================================
+   NAVEGACIÓN PRINCIPAL (DESKTOP)
+   ========================================== */
 .contenedor-navegacion {
   position: fixed;
   top: 20px;
@@ -42,21 +49,20 @@ body {
   z-index: 9999;
 }
 
-/* === Barra Flotante Píldora === */
 .navbar-pildora {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.6rem 1.5rem;
-  background: rgba(184, 223, 248, 0.75); /* Azul claro translúcido */
-  backdrop-filter: blur(12px); /* Efecto difuminado de fondo */
+  background: rgba(184, 223, 248, 0.75);
+  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.12);
+  position: relative;
 }
 
-/* === Logo / Marca === */
 .nav-brand {
   display: flex;
   align-items: center;
@@ -65,13 +71,14 @@ body {
   font-size: 1.3rem;
   font-weight: 800;
   color: #0f172a;
+  text-decoration: none;
 }
 
 .icono-destello {
   font-size: 1.1rem;
+  color: #ffffff;
 }
 
-/* === Lista de Opciones === */
 .nav-lista {
   display: flex;
   align-items: center;
@@ -89,21 +96,19 @@ body {
   padding: 0.4rem 1rem;
   border-radius: 20px;
   transition: all 0.25s ease;
-  position: relative;
+  display: inline-block;
 }
 
 .nav-item:hover {
   color: #0f172a;
 }
 
-/* Estado Activo (Píldora azul resaltada como en tu imagen) */
 .nav-item.activo {
   background-color: #82ceff;
   color: #0f172a;
   font-weight: 600;
 }
 
-/* Botón especial para el CV */
 .btn-cv-pildora {
   border: 1.5px solid #0f172a;
   font-weight: 600;
@@ -114,76 +119,231 @@ body {
   color: #ffffff;
 }
 
-/* === Botón de Luna (Modo Oscuro) === */
-.btn-tema {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px;
-  border-radius: 50%;
-  color: #0f172a;
-
+/* Ocultar elementos del Checkbox y Hamburguesa en Desktop */
+.menu-check,
+.menu-hamburguesa {
+  display: none;
 }
 
-.btn-tema:hover {
-  background: rgba(255, 255, 255, 0.5);
-  transform: scale(1.1);
-}
+/* ==========================================
+   ADAPTACIÓN RESPONSIVE (MÓVIL Y TABLET)
+   ========================================== */
+@media (max-width: 850px) {
+  /* Mostrar botón de hamburguesa */
+  .menu-hamburguesa {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 10001;
+  }
 
+  .menu-hamburguesa span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #0f172a;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+
+  /* Desplegable estilo tarjeta Flotante */
+  .nav-lista {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(210, 235, 247, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    border-radius: 24px;
+    padding: 1.5rem;
+    flex-direction: column;
+    gap: 0.8rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    
+    /* Estado Oculto */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+
+  .nav-lista li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-item {
+    width: 100%;
+    padding: 0.7rem 0;
+    font-size: 1.15rem;
+  }
+
+  /* Abrir menú cuando el Checkbox está activado */
+  .menu-check:checked ~ .nav-lista {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* Animación a 'X' en las líneas de la hamburguesa */
+  .menu-check:checked ~ .menu-hamburguesa span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+  }
+
+  .menu-check:checked ~ .menu-hamburguesa span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-check:checked ~ .menu-hamburguesa span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+  }
+}
 
 
 /* === Sección Hero Principal === */
-/* Container principal */
+/* ==========================================
+   1. CONTENEDOR PRINCIPAL HERO
+   ========================================== */
 .contenedor-hero {
   position: relative;
   width: 100%;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Todo alineado hacia la izquierda */
-  padding-left: 10%; /* Separación del borde izquierdo */
+  justify-content: flex-start; /* Alinea el texto firmemente a la izquierda */
+  padding: 2rem 8%;
   overflow: hidden;
+  box-sizing: border-box;
   font-family: 'Sniglet', cursive, sans-serif;
 }
 
-/* Imagen Ilustrativa de Fondo */
-.imagen-fondo {
+/* ==========================================
+   2. SISTEMA DE NUBES EN CSS (FONDO ANIMADO)
+   ========================================== */
+.nubes-contenedor {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  pointer-events: none;
   z-index: 1;
+  overflow: hidden;
 }
 
-/* Bloque contenedor de texto (alineado a la izquierda) */
+.nube {
+  position: absolute;
+  background-color: #ffffff;
+  border: 2.5px solid #000;
+  border-radius: 50px;
+  box-shadow: 4px 4px 0px #000;
+  animation: moverNubes linear infinite;
+}
+
+.nube::before,
+.nube::after {
+  content: '';
+  position: absolute;
+  background-color: #ffffff;
+  border: 2.5px solid #000;
+  border-radius: 50%;
+}
+
+.nube-1 {
+  width: 130px;
+  height: 40px;
+  top: 12%;
+  animation-duration: 28s;
+}
+.nube-1::before { width: 55px; height: 55px; top: -28px; left: 20px; }
+.nube-1::after  { width: 40px; height: 40px; top: -18px; right: 20px; }
+
+.nube-2 {
+  width: 170px;
+  height: 48px;
+  top: 32%;
+  animation-duration: 42s;
+  animation-delay: -15s;
+}
+.nube-2::before { width: 70px; height: 70px; top: -38px; left: 25px; }
+.nube-2::after  { width: 50px; height: 50px; top: -22px; right: 25px; }
+
+.nube-3 {
+  width: 110px;
+  height: 35px;
+  top: 58%;
+  animation-duration: 34s;
+  animation-delay: -6s;
+}
+.nube-3::before { width: 45px; height: 45px; top: -22px; left: 15px; }
+.nube-3::after  { width: 32px; height: 32px; top: -14px; right: 15px; }
+
+.nube-4 {
+  width: 150px;
+  height: 42px;
+  top: 78%;
+  animation-duration: 38s;
+  animation-delay: -22s;
+}
+.nube-4::before { width: 60px; height: 60px; top: -30px; left: 22px; }
+.nube-4::after  { width: 42px; height: 42px; top: -18px; right: 22px; }
+
+@keyframes moverNubes {
+  0% { transform: translateX(-220px); }
+  100% { transform: translateX(100vw); }
+}
+
+/* ==========================================
+   3. CAPA DE TEXTO (FIJA A LA IZQUIERDA)
+   ========================================== */
 .capa-texto {
   position: relative;
   z-index: 2;
+  max-width: 500px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Mantiene todo alineado a la izquierda */
+  align-items: flex-start;
   text-align: left;
-  max-width: 500px;
 }
 
-/* HELLO! Badge */
+/* Badge Hello */
 .badge-hello {
-  border: 2px solid #000;
-  border-radius: 20px;
-  padding: 0.2rem 0.8rem;
+  display: inline-block;
+  border: 2.5px solid #000;
+  border-radius: 25px;
+  padding: 0.4rem 1.2rem;
   font-weight: 800;
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  margin-bottom: 0.8rem;
   background-color: #fff;
+  color: #000;
+  box-shadow: 3px 3px 0px #000;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: floatBadge 3s ease-in-out infinite;
 }
 
+.badge-hello:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 5px 5px 0px #000;
+  cursor: default;
+}
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Textos */
 .titulo-bienvenida {
-  font-size: 3.5rem;
+  font-size: 5.5rem;
   font-weight: 800;
   color: #000;
   margin: 0;
@@ -199,22 +359,21 @@ body {
 }
 
 .descripcion-presentacion {
-  font-size: 1.05rem;
+  font-size: 2.05rem;
   color: #222;
   line-height: 1.4;
   margin-bottom: 2rem;
 }
 
-/* Fila con Botón y Anotación lado a lado */
+/* Fila de Botón y Anotación */
 .contenedor-boton-anotacion {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   position: relative;
 }
 
-/* Wrapper del Botón */
 .wrapper-btn {
   position: relative;
   display: inline-flex;
@@ -240,7 +399,6 @@ body {
   height: 20px;
 }
 
-/* Destellos a los lados del botón */
 .destello {
   position: absolute;
   top: 50%;
@@ -248,26 +406,11 @@ body {
   width: 6px;
   height: 14px;
 }
-.destello-izq {
-  left: -12px;
-  border-left: 2px solid #000;
-}
-.destello-der {
-  right: -12px;
-  border-right: 2px solid #000;
-}
 
-/* Anotación manuscrita a la derecha del botón */
 .anotacion-cool {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-}
-
-.flecha-curva-svg {
-  width: 35px;
-  height: 25px;
-  color: #000;
 }
 
 .texto-anotacion {
@@ -276,35 +419,16 @@ body {
   font-weight: 700;
   color: #000;
 }
-/* Aseguramos que la capa de texto sea el punto de referencia */
-.capa-texto {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  max-width: 500px;
-}
 
-/* Mantener margen controlado en los botones */
-.contenedor-boton-anotacion {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 1rem; /* Reducido para dar paso a la animación */
-  position: relative;
-}
-
-/* Contenedor Lottie independiente */
+/* Contenedor Lottie */
 .contenedor-lottie {
-  width: 180px;  /* Ajusta el ancho deseado */
-  height: 180px; /* Ajusta la altura deseada */
+  width: 180px;
+  height: 180px;
   margin-top: 0.5rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  pointer-events: none; /* Evita bloquear clics alrededor */
+  pointer-events: none;
 }
 
 .contenedor-lottie dotlottie-player {
@@ -312,6 +436,55 @@ body {
   height: 100%;
 }
 
+/* ==========================================
+   4. ILUSTRACIÓN PRINCIPAL (PEGADA A LA DERECHA)
+   ========================================== */
+.imagen-fondo {
+  position: absolute;
+  right: -5%;
+  top: 0;
+  height: 100vh;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  object-position: right center;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(-8px 4px 12px rgba(0, 0, 0, 0.12));
+}
+
+/* ==========================================
+   5. ADAPTACIÓN RESPONSIVE (SIN IMAGEN EN MÓVILES)
+   ========================================== */
+@media (max-width: 900px) {
+  .contenedor-hero {
+    justify-content: center;
+    padding: 5rem 1.5rem 3rem 1.5rem;
+    min-height: auto;
+  }
+
+  /* Oculta la ilustración por completo en celulares y tablets */
+  .imagen-fondo {
+    display: none !important;
+  }
+
+  /* Centra la información en pantallas pequeñas */
+  .capa-texto {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .contenedor-boton-anotacion,
+  .contenedor-lottie {
+    justify-content: center;
+  }
+
+  .nubes-contenedor {
+    transform: scale(0.65);
+    transform-origin: top left;
+  }
+}
 /* === Sección About Me (Ajustada para ser más grande) === */
 .seccion-about {
   position: relative;
