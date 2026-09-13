@@ -1,3 +1,13 @@
-Buenas noches, adjunto mi primer boceto de portafolio, espero reciba su feedback, gracias
+## About Me
 
-[www.figma.com/design/uYYztSNTlMSS3Mh1m4oiuf/portfolio?node-id=0-1&amp;t=53HRE7S9hoWjCU8d-1](https://www.figma.com/design/uYYztSNTlMSS3Mh1m4oiuf/portfolio?node-id=0-1&t=53HRE7S9hoWjCU8d-1)
+¡Hola! Soy **Paula**, Desarrolladora Full Stack en formación apasionada por crear interfaces intuitivas y arquitecturas backend sólidas. Me especializo en transformar problemas complejos en soluciones digitales atractivas, funcionales y accesibles.
+
+* **Ubicación:** Bogotá, Colombia
+* **Formación:** Análisis y Desarrollo de Software (SENA)
+* **Formación:** Desarrollador Fullstack (GENERATION Cohorte 13)
+* **Enfoque:** Frontend reactivo (UI/UX) & Servicios Backend en Java / Spring Boot
+
+
+[paulamrodriguezb.github.io/portafolio](https://paulamrodriguezb.github.io/portafolio/)
+
+---
