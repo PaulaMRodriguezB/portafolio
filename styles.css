@@ -1041,8 +1041,8 @@ body {
   justify-content: center;
 }
 
-.dot.yellow { background-color: #fca311; }
-.dot.green { background-color: #2ec4b6; }
+.dot.yellow { background-color: #ffbd2e; }
+.dot.green { background-color: #28c940; }
 .dot.red { 
   background-color: #ff595e; 
   color: var(--color-blanco);
