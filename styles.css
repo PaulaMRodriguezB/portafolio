@@ -9,11 +9,24 @@
   --fuente-manuscrita: 'Sniglet', cursive, sans-serif;
 }
 
-* {
-  font-family: 'Sniglet', cursive, sans-serif;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+/* Fuente limpia y legible para el cuerpo del sitio */
+body {
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+  color: #2d3748;
+  line-height: 1.6;
+}
+
+/* Sniglet aplicada a los títulos para dar personalidad */
+h1, h2, h3, h4, .brand-logo {
+  font-family: 'Sniglet', cursive, sans-serif;
 }
 
 /* === Fondo Global: Azul Cielo -> Rosado -> Blanco === */
