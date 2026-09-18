@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Función para activar el botón seleccionado en la Navbar
   const marcarActivo = (elemento) => {
-    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('activo'));
+    document.querySelectorAll('.nav-item, .btn-cv-pildora').forEach(item => item.classList.remove('activo'));
     if (elemento) elemento.classList.add('activo');
   };
 
@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
      ========================================== */
   // 1. Click en About Me
   if (enlaceSobreMi) {
-    enlaceSobreMi.addEventListener('click', () => {
+    enlaceSobreMi.addEventListener('click', (e) => {
+      e.preventDefault();
       marcarActivo(enlaceSobreMi);
       const about = document.getElementById('about');
       if (about) about.scrollIntoView({ behavior: 'smooth' });
@@ -56,7 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 3. Click en Projects
   if (enlaceProyectos) {
-    enlaceProyectos.addEventListener('click', () => {
+    enlaceProyectos.addEventListener('click', (e) => {
+      e.preventDefault();
       marcarActivo(enlaceProyectos);
       const proyectos = document.getElementById('projects');
       if (proyectos) proyectos.scrollIntoView({ behavior: 'smooth' });
@@ -65,7 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 4. Click en Contact
   if (enlaceContacto) {
-    enlaceContacto.addEventListener('click', () => {
+    enlaceContacto.addEventListener('click', (e) => {
+      e.preventDefault();
       marcarActivo(enlaceContacto);
       const contacto = document.getElementById('contacto') || document.getElementById('contact');
       if (contacto) contacto.scrollIntoView({ behavior: 'smooth' });
@@ -109,73 +112,97 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-});
 
-/* ==========================================
-   4. MODALES DE PROYECTOS Y CIERRE TECLA ESCAPE
-   ========================================== */
-document.addEventListener('DOMContentLoaded', () => {
+  /* ==========================================
+     4. MODALES DE PROYECTOS Y CIERRE TECLA ESCAPE
+     ========================================== */
+  // Modal Task Planner
   const cardTaskPlanner = document.getElementById('card-task-planner');
   const modalTaskPlanner = document.getElementById('modal-task-planner');
-  const btnCerrar = document.getElementById('btn-cerrar-task-planner');
+  const btnCerrarTaskPlanner = document.getElementById('btn-cerrar-task-planner');
 
   if (cardTaskPlanner && modalTaskPlanner) {
-    cardTaskPlanner.addEventListener('click', () => modalTaskPlanner.classList.add('activo'));
+    cardTaskPlanner.addEventListener('click', () => {
+      modalTaskPlanner.classList.remove('oculta');
+      modalTaskPlanner.classList.add('activo');
+    });
   }
 
-  if (btnCerrar && modalTaskPlanner) {
-    btnCerrar.addEventListener('click', () => modalTaskPlanner.classList.remove('activo'));
+  if (btnCerrarTaskPlanner && modalTaskPlanner) {
+    btnCerrarTaskPlanner.addEventListener('click', () => {
+      modalTaskPlanner.classList.remove('activo');
+      modalTaskPlanner.classList.add('oculta');
+    });
   }
 
   if (modalTaskPlanner) {
     modalTaskPlanner.addEventListener('click', (e) => {
-      if (e.target === modalTaskPlanner) modalTaskPlanner.classList.remove('activo');
+      if (e.target === modalTaskPlanner) {
+        modalTaskPlanner.classList.remove('activo');
+        modalTaskPlanner.classList.add('oculta');
+      }
     });
   }
-});
 
-// Modal TuCancha
-const cardTuCancha = document.getElementById('card-tucancha');
-const modalTuCancha = document.getElementById('modal-tucancha');
-const btnCerrarTuCancha = document.getElementById('btn-cerrar-tucancha');
+  // Modal TuCancha
+  const cardTuCancha = document.getElementById('card-tucancha');
+  const modalTuCancha = document.getElementById('modal-tucancha');
+  const btnCerrarTuCancha = document.getElementById('btn-cerrar-tucancha');
 
-if (cardTuCancha && modalTuCancha) {
-  cardTuCancha.addEventListener('click', () => modalTuCancha.classList.add('activo'));
+  if (cardTuCancha && modalTuCancha) {
+    cardTuCancha.addEventListener('click', () => {
+      modalTuCancha.classList.remove('oculta');
+      modalTuCancha.classList.add('activo');
+    });
 
-  if (btnCerrarTuCancha) {
-    btnCerrarTuCancha.addEventListener('click', () => modalTuCancha.classList.remove('activo'));
-  }
+    if (btnCerrarTuCancha) {
+      btnCerrarTuCancha.addEventListener('click', () => {
+        modalTuCancha.classList.remove('activo');
+        modalTuCancha.classList.add('oculta');
+      });
+    }
 
-  modalTuCancha.addEventListener('click', (e) => {
-    if (e.target === modalTuCancha) modalTuCancha.classList.remove('activo');
-  });
-}
-
-// Modal Universo
-const cardUniverso = document.getElementById('card-universo');
-const modalUniverso = document.getElementById('modal-universo');
-const btnCerrarUniverso = document.getElementById('btn-cerrar-universo');
-
-if (cardUniverso && modalUniverso) {
-  cardUniverso.addEventListener('click', () => modalUniverso.classList.add('activo'));
-
-  if (btnCerrarUniverso) {
-    btnCerrarUniverso.addEventListener('click', () => modalUniverso.classList.remove('activo'));
-  }
-
-  modalUniverso.addEventListener('click', (e) => {
-    if (e.target === modalUniverso) modalUniverso.classList.remove('activo');
-  });
-}
-
-// Cierre global con Escape
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.ventana-sub, .modal').forEach(m => {
-      m.classList.remove('activo');
-      m.classList.add('oculta');
+    modalTuCancha.addEventListener('click', (e) => {
+      if (e.target === modalTuCancha) {
+        modalTuCancha.classList.remove('activo');
+        modalTuCancha.classList.add('oculta');
+      }
     });
   }
-});
 
-..
+  // Modal Universo
+  const cardUniverso = document.getElementById('card-universo');
+  const modalUniverso = document.getElementById('modal-universo');
+  const btnCerrarUniverso = document.getElementById('btn-cerrar-universo');
+
+  if (cardUniverso && modalUniverso) {
+    cardUniverso.addEventListener('click', () => {
+      modalUniverso.classList.remove('oculta');
+      modalUniverso.classList.add('activo');
+    });
+
+    if (btnCerrarUniverso) {
+      btnCerrarUniverso.addEventListener('click', () => {
+        modalUniverso.classList.remove('activo');
+        modalUniverso.classList.add('oculta');
+      });
+    }
+
+    modalUniverso.addEventListener('click', (e) => {
+      if (e.target === modalUniverso) {
+        modalUniverso.classList.remove('activo');
+        modalUniverso.classList.add('oculta');
+      }
+    });
+  }
+
+  // Cierre global con Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.ventana-sub, .modal').forEach(m => {
+        m.classList.remove('activo');
+        m.classList.add('oculta');
+      });
+    }
+  });
+});
